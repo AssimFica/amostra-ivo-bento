@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área de cliente · Ivo Bento Premium Studio</title>
+<meta name="theme-color" content="#0A0B0A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum.css">
+<style>
+body { min-height: 100dvh; background: radial-gradient(90% 60% at 80% 0%, rgba(125,194,66,.16), transparent 60%), var(--preto); }
+.pag { max-width: 460px; margin: 0 auto; min-height: 100dvh; padding: max(22px, env(safe-area-inset-top)) 22px 40px; display: flex; flex-direction: column; gap: 26px; }
+.cab { display: flex; justify-content: space-between; align-items: center; }
+.cab a.volta { font: 600 14px/1 var(--f-titulo); letter-spacing: .1em; text-transform: uppercase; color: var(--suave); text-decoration: none; }
+h1 { font-size: clamp(50px, 14vw, 68px); }
+h1 span { color: var(--verde); }
+.lead { color: var(--suave); }
+.passo { display: none; flex-direction: column; gap: 18px; }
+.passo.ativo { display: flex; }
+.campo { display: grid; gap: 8px; }
+.campo label, .campo .rot { font-weight: 600; font-size: 15px; }
+.tel { display: grid; grid-template-columns: auto 1fr; border: 1px solid var(--linha); border-radius: 16px; background: var(--placa); overflow: hidden; }
+.tel span { padding: 16px 14px; border-right: 1px solid var(--linha); color: var(--suave); font-size: 18px; }
+.tel input, .campo input[type=text] { border: 0; background: transparent; padding: 16px; font-size: 19px; width: 100%; outline: none; }
+.campo input[type=text] { background: var(--placa); border: 1px solid var(--linha); border-radius: 16px; }
+.tel:focus-within, .campo input[type=text]:focus { box-shadow: 0 0 0 2px var(--verde); }
+.codigo { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.codigo input { text-align: center; font: 700 30px/1 var(--f-titulo); padding: 14px 0; border-radius: 14px; border: 1px solid var(--linha); background: var(--placa); width: 100%; outline: none; }
+.codigo input:focus { box-shadow: 0 0 0 2px var(--verde); }
+.nota { font-size: 13.5px; color: var(--suave); }
+.erro { font-size: 14.5px; color: #FFB4A6; }
+.mods { display: flex; flex-wrap: wrap; gap: 8px; }
+.mods button { border: 1px solid var(--linha); background: var(--placa); border-radius: 999px; padding: 11px 16px; font-weight: 600; font-size: 15px; }
+.mods button[aria-pressed="true"] { border-color: var(--verde); background: rgba(125,194,66,.14); color: var(--verde); }
+.consent { display: grid; grid-template-columns: 24px 1fr; gap: 12px; font-size: 14.5px; color: var(--suave); align-items: start; }
+.consent input { width: 20px; height: 20px; accent-color: var(--verde); margin-top: 2px; }
+.ou { display: flex; align-items: center; gap: 12px; color: var(--suave); font-size: 13px; }
+.ou::before, .ou::after { content: ""; flex: 1; height: 1px; background: var(--linha); }
+.link { color: var(--suave); font-size: 14.5px; text-align: center; background: none; text-decoration: underline; text-underline-offset: 3px; }
+.vantagens { list-style: none; display: grid; gap: 10px; margin-top: 4px; }
+.vantagens li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center; font-size: 15.5px; }
+.vantagens i { width: 34px; height: 34px; border-radius: 10px; background: rgba(125,194,66,.14); display: grid; place-items: center; color: var(--verde); font: 700 16px/1 var(--f-titulo); font-style: normal; }
+</style>
+</head>
+<body>
+<main class="pag">
+  <div class="cab">
+    <a class="logo" href="index.html"><span class="x">✕</span><span>Ivo Bento<small>Premium Studio</small></span></a>
+    <a class="volta" href="../index.html">‹ Website</a>
+  </div>
+
+  <!-- 1. telemóvel -->
+  <section class="passo ativo" id="p-tel">
+    <h1>Área de <span>cliente</span></h1>
+    <p class="lead">A tua Liga, as tuas corridas e os teus treinos, num sítio só.</p>
+    <ul class="vantagens">
+      <li><i>1.º</i><span>O teu lugar na Liga Premium do mês</span></li>
+      <li><i>km</i><span>As corridas do Run Club, com mapa e ritmo</span></li>
+      <li><i>✕</i><span>A entrada no estúdio com um toque</span></li>
+    </ul>
+    <div class="campo"><label for="tel">O teu telemóvel</label><div class="tel"><span>+351</span><input id="tel" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="9xx xxx xxx"></div></div>
+    <p class="erro" id="erro-tel" hidden></p>
+    <button class="btn" id="b-tel" type="button">Receber código por SMS</button>
+    <div class="ou">ou</div>
+    <button class="btn sec" id="b-exemplo" type="button">Entrar como sócio de exemplo</button>
+  </section>
+
+  <!-- 2. código -->
+  <section class="passo" id="p-cod">
+    <h1>O <span>código</span></h1>
+    <p class="lead" id="cod-txt"></p>
+    <div class="codigo" id="codigo" role="group" aria-label="Código de 6 números">
+      <input inputmode="numeric" aria-label="1.º número" autocomplete="one-time-code"><input inputmode="numeric" aria-label="2.º número"><input inputmode="numeric" aria-label="3.º número"><input inputmode="numeric" aria-label="4.º número"><input inputmode="numeric" aria-label="5.º número"><input inputmode="numeric" aria-label="6.º número">
+    </div>
+    <p class="nota">Na amostra não é enviado nenhum SMS: qualquer código de 6 números serve.</p>
+    <button class="btn" id="b-cod" type="button" disabled>Confirmar</button>
+    <button class="link" id="b-outro" type="button">Usar outro número</button>
+  </section>
+
+  <!-- 3. cliente novo -->
+  <section class="passo" id="p-novo">
+    <h1>Bem-vindo ao <span>Premium</span></h1>
+    <p class="lead">É a primeira vez que entras. Dois minutos e está feito.</p>
+    <div class="campo"><label for="nome">Nome e apelido</label><input id="nome" type="text" autocomplete="name" placeholder="Ex.: Pedro Menezes"></div>
+    <div class="campo"><span class="rot">O que treinas?</span>
+      <div class="mods" id="mods">
+        <button type="button" aria-pressed="false">CrossTraining</button><button type="button" aria-pressed="false">Pilates Clínico</button><button type="button" aria-pressed="false">Running Club</button><button type="button" aria-pressed="false">Treino Personalizado</button><button type="button" aria-pressed="false">CrossKids</button>
+      </div>
+    </div>
+    <label class="consent" for="ok-dados"><input id="ok-dados" type="checkbox"><span>Aceito que o estúdio guarde as minhas presenças e corridas para a Liga e para o meu acompanhamento. Só eu e os treinadores as vemos; na tabela do clube aparecem o nome e os totais.</span></label>
+    <button class="btn" id="b-novo" type="button" disabled>Entrar na área de cliente</button>
+  </section>
+</main>
+<span class="amostra">Amostra da AssimFica · nada é enviado</span>
+<script type="module">
+import { cliente, guardaCliente, entra, sessao } from './sessao.js';
+const $ = s => document.querySelector(s);
+const depois = 'painel.html' + location.search;
+if (sessao()) location.replace(depois);
+const mostra = id => document.querySelectorAll('.passo').forEach(p => p.classList.toggle('ativo', p.id === id));
+let tel = '';
+const limpa = v => v.replace(/\D/g, '').replace(/^351/, '');
+
+$('#b-tel').addEventListener('click', () => {
+  tel = limpa($('#tel').value);
+  if (!/^9\d{8}$/.test(tel)) { const e = $('#erro-tel'); e.textContent = 'Escreve um número de telemóvel português, com 9 algarismos, a começar por 9.'; e.hidden = false; return; }
+  $('#cod-txt').textContent = 'Enviámos um código de 6 números para o ' + tel.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3') + '.';
+  mostra('p-cod'); setTimeout(() => document.querySelector('#codigo input').focus(), 50);
+});
+$('#tel').addEventListener('keydown', e => { if (e.key === 'Enter') $('#b-tel').click(); });
+$('#b-outro').addEventListener('click', () => mostra('p-tel'));
+
+const caixas = [...document.querySelectorAll('#codigo input')];
+caixas.forEach((c, i) => {
+  c.addEventListener('input', () => {
+    const v = c.value.replace(/\D/g, '');
+    if (v.length > 1) { [...v].slice(0, 6 - i).forEach((d, k) => { caixas[i + k].value = d; }); }
+    else c.value = v;
+    const prox = caixas.find(x => !x.value); if (prox && c.value) prox.focus();
+    $('#b-cod').disabled = caixas.some(x => !x.value);
+    if (!$('#b-cod').disabled) $('#b-cod').click();
+  });
+  c.addEventListener('keydown', e => { if (e.key === 'Backspace' && !c.value && i) caixas[i - 1].focus(); });
+});
+$('#b-cod').addEventListener('click', () => {
+  const c = cliente(tel);
+  if (c) { entra(c); location.replace(depois); return; }
+  mostra('p-novo'); setTimeout(() => $('#nome').focus(), 50);
+});
+
+const mods = [...document.querySelectorAll('#mods button')];
+mods.forEach(b => b.addEventListener('click', () => { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); valida(); }));
+const valida = () => { $('#b-novo').disabled = !($('#nome').value.trim().length >= 3 && $('#ok-dados').checked); };
+$('#nome').addEventListener('input', valida); $('#ok-dados').addEventListener('change', valida);
+$('#b-novo').addEventListener('click', () => {
+  const c = { tel, nome: $('#nome').value.trim().slice(0, 40), modalidades: mods.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.textContent), desde: new Date().toISOString().slice(0, 10), novo: true };
+  guardaCliente(c); entra(c); location.replace(depois);
+});
+$('#b-exemplo').addEventListener('click', () => {
+  const c = { tel: '912345678', nome: 'Pedro Menezes', modalidades: ['CrossTraining', 'Running Club'], desde: '2025-09-15', exemplo: true };
+  guardaCliente(c); entra(c); location.replace(depois);
+});
+</script>
+</body>
+</html>

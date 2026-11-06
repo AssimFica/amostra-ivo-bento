@@ -115,8 +115,19 @@
     if (lenis) lenis.scrollTo(alvo, { duration: 1.6 }); else alvo.scrollIntoView();
   }));
 
-  // a barra ganha fundo depois da abertura
-  ScrollTrigger.create({ trigger: '.mani', start: 'top 80px', onEnter: () => q('#barra').classList.add('cheia'), onLeaveBack: () => q('#barra').classList.remove('cheia') });
+  // a pílula esconde-se a descer e volta ao subir; o realce segue a secção onde se está
+  const barra = q('#barra'), realce = q('#realce');
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => { if (nav && nav.classList.contains('aberta')) return; barra.classList.toggle('esconde', s.direction === 1 && s.scroll() > 700); } });
+  const marca = a => {
+    qa('.nav a').forEach(x => x.classList.toggle('ativo', x === a));
+    if (!realce) return;
+    if (!a || getComputedStyle(realce).display === 'none') { realce.style.opacity = 0; return; }
+    realce.style.width = a.offsetWidth + 'px'; realce.style.transform = 'translateX(' + a.offsetLeft + 'px)'; realce.style.opacity = 1;
+  };
+  qa('.nav a[href^="#"]').forEach(a => {
+    const sec = q(a.getAttribute('href')); if (!sec) return;
+    ScrollTrigger.create({ trigger: sec, start: 'top 45%', end: 'bottom 45%', onToggle: s => { if (s.isActive) marca(a); else if (a.classList.contains('ativo')) marca(null); } });
+  });
 
   if (reduz) { tiraIntro(); return; }
   const animacoes = () => {
@@ -257,6 +268,7 @@
   if (fh) gsap.from(fh.chars, { yPercent: 105, duration: 1.1, stagger: .04, ease: 'expo.out', scrollTrigger: { trigger: '.fim-in', start: 'top 80%' } });
   gsap.from('.caminho', { y: 60, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.caminhos', start: 'top 90%' } });
 
+  ScrollTrigger.sort(); ScrollTrigger.refresh();
   addEventListener('load', () => ScrollTrigger.refresh());
   };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(animacoes);

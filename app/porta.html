@@ -78,7 +78,7 @@ let ultimo = null;
 function qr() {
   const c = codigo();
   if (c === ultimo) return; ultimo = c;
-  const url = new URL('liga.html?entrada=' + c, location.href).toString();
+  const url = new URL('painel.html?entrada=' + c, location.href).toString();
   $('#cod').textContent = c;
   if (window.qrcode) {
     const q = qrcode(0, 'M'); q.addData(url); q.make();
