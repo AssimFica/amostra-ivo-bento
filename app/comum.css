@@ -1,0 +1,38 @@
+/* Amostra da AssimFica para o Ivo Bento Premium Studio (6/11/2026).
+   A identidade do estúdio: preto, o verde do X do logótipo, o dourado do «Pre Stage». */
+:root {
+  --preto: #0A0B0A;
+  --placa: #151715;
+  --placa2: #1E211E;
+  --linha: #2A2E2A;
+  --branco: #F4F4F0;
+  --suave: #A3A8A2;
+  --verde: #7DC242;
+  --ouro: #C9AE3C;
+  --erro: #FF6A55;
+  --f-titulo: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-corpo: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { min-height: 100%; }
+body { background: var(--preto); color: var(--branco); font: 400 17px/1.5 var(--f-corpo); }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+input, select { font: inherit; color: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--f-titulo); font-weight: 700; line-height: .95; letter-spacing: -.005em; text-transform: uppercase; text-wrap: balance; }
+
+.logo { display: inline-flex; align-items: center; gap: 9px; font: 700 21px/1 var(--f-titulo); letter-spacing: .03em; text-decoration: none; text-transform: uppercase; }
+.logo .x { color: var(--verde); font-size: 26px; line-height: 1; }
+.logo small { display: block; font: 500 9.5px/1.25 var(--f-corpo); letter-spacing: .08em; color: var(--suave); }
+
+.btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 24px; border-radius: 999px; background: var(--verde); color: #0A0B0A; font: 700 20px/1 var(--f-titulo); letter-spacing: .03em; text-transform: uppercase; text-decoration: none; width: 100%; transition: transform .15s ease, opacity .15s ease; }
+.btn:active { transform: scale(.98); }
+.btn.sec { background: var(--placa2); color: var(--branco); border: 1px solid var(--linha); }
+.btn.ouro { background: var(--ouro); }
+.btn[disabled] { opacity: .4; pointer-events: none; }
+
+.amostra { display: block; width: fit-content; margin: 8px auto 28px; font: 500 11px/1 var(--f-corpo); color: var(--suave); background: rgba(10,11,10,.88); border: 1px solid var(--linha); padding: 6px 11px; border-radius: 999px; white-space: nowrap; pointer-events: none; }
+.amostra.fixa { position: fixed; left: 50%; bottom: 10px; transform: translateX(-50%); margin: 0; z-index: 80; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }

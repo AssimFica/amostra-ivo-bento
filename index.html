@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ivo Bento Premium Studio · Treino personalizado e de grupo em Rebordosa</title>
+<meta name="description" content="CrossTraining, Pilates Clínico, Treino Personalizado, CrossKids e Running Club em Rebordosa, Paredes. Your Future in Motion.">
+<meta name="theme-color" content="#0C0D0C">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="icon" href="app/icone-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/heroi-passadeira.webp">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- a contagem de entrada: o relógio de intervalos do estúdio -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="led led-grande"><span class="led-fundo">88</span><span class="led-num" id="intro-n">03</span></div>
+</div>
+
+<header class="barra" id="barra">
+  <a class="marca" href="#topo" aria-label="Ivo Bento Premium Studio, início">
+    <svg class="marca-x" viewBox="0 0 100 100" aria-hidden="true"><use href="#x"/></svg>
+    <span>Ivo Bento<small>Premium Studio</small></span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Principal">
+    <a href="#modalidades">Modalidades</a>
+    <a href="#comunidade">Comunidade</a>
+    <a href="#ivo">O Ivo</a>
+    <a href="#horario">Horário</a>
+    <a href="#novo">Novo estúdio</a>
+  </nav>
+  <a class="barra-cta" href="app/prova.html">Aula de Prova</a>
+  <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span><span class="sr">Menu</span></button>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="x" viewBox="0 0 100 100"><rect x="38" y="-8" width="24" height="116" rx="5" transform="rotate(45 50 50)" fill="currentColor"/><rect x="38" y="-8" width="24" height="116" rx="5" transform="rotate(-45 50 50)" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<main>
+
+<!-- 1. abertura: o ecrã abre-se pelo ✕ do logótipo -->
+<section class="heroi" id="topo">
+  <div class="heroi-palco">
+    <div class="heroi-foto" id="heroi-foto"><img src="img/heroi-passadeira.webp" alt="Atleta a correr na passadeira do estúdio, com o grupo a treinar atrás" fetchpriority="high"></div>
+    <div class="heroi-escurece" id="heroi-escurece"></div>
+    <h1 class="heroi-t" aria-label="Your future in motion. Ivo Bento Premium Studio, Rebordosa.">
+      <span class="ht ht-1" id="ht1" aria-hidden="true">Your future</span>
+      <span class="ht ht-2" id="ht2" aria-hidden="true">in motion</span>
+    </h1>
+    <div class="heroi-fim" id="heroi-fim">
+      <p class="heroi-onde">Ivo Bento Premium Studio · Rebordosa</p>
+      <p class="heroi-frase">Treino personalizado e de grupo, com alguém sempre ao teu lado.</p>
+      <div class="heroi-botoes">
+        <a class="botao" href="app/prova.html">Experimentar em casa</a>
+        <a class="botao vazio" href="#horario">Ver horário</a>
+      </div>
+    </div>
+    <div class="desce" id="desce" aria-hidden="true"><span></span>Desce</div>
+  </div>
+</section>
+
+<!-- 2. disciplina · identidade · intensidade -->
+<section class="mani" id="mani" aria-label="Disciplina, identidade, intensidade">
+  <div class="mani-palco">
+    <div class="mani-palavras" aria-hidden="true">
+      <span class="mp">Disciplina</span><span class="mp">Identidade</span><span class="mp">Intensidade</span>
+    </div>
+    <figure class="mc mc-1"><img src="img/peso-morto.webp" alt="Peso morto com halteres" loading="lazy"></figure>
+    <figure class="mc mc-2"><img src="img/foco.webp" alt="Atleta concentrada antes da série" loading="lazy"></figure>
+    <figure class="mc mc-3"><img src="img/supino.webp" alt="Supino com halteres, com o treinador a acompanhar" loading="lazy"></figure>
+    <figure class="mc mc-4"><img src="img/agachamento-pb.webp" alt="Agachamento com kettlebell" loading="lazy"></figure>
+    <figure class="mc mc-centro" id="mc-centro"><img src="img/cross-sala.webp" alt="Aula de CrossTraining na sala do estúdio" loading="lazy"></figure>
+    <p class="mani-sr">Disciplina. Identidade. Intensidade.</p>
+  </div>
+</section>
+
+<!-- 3. a frase, lida com o scroll -->
+<section class="leitura">
+  <p class="leitura-t" id="leitura">Aqui não precisas de provar nada a ninguém. Vem como és, treina ao teu ritmo e deixa-nos mostrar como cada sessão pode ser feita para ti.</p>
+</section>
+
+<!-- faixa -->
+<div class="faixa" aria-hidden="true"><div class="faixa-in" id="faixa">
+  <span>CrossTraining</span><i></i><span>Pilates Clínico</span><i></i><span>Treino Personalizado</span><i></i><span>CrossKids</span><i></i><span>Running Club</span><i></i><span>Off-Season</span><i></i>
+  <span>CrossTraining</span><i></i><span>Pilates Clínico</span><i></i><span>Treino Personalizado</span><i></i><span>CrossKids</span><i></i><span>Running Club</span><i></i><span>Off-Season</span><i></i>
+</div></div>
+
+<!-- 4. modalidades: a faixa horizontal -->
+<section class="mods" id="modalidades" aria-labelledby="t-mods">
+  <div class="mods-palco">
+    <div class="mods-trilho" id="trilho">
+      <div class="mod mod-abre">
+        <h2 id="t-mods">O que se<br>treina <em>aqui</em></h2>
+        <p>Sete formas de treinar. Uma equipa que conhece o teu nome.</p>
+        <span class="mod-seta" aria-hidden="true">→</span>
+      </div>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/cross-sprint.webp" alt="Sprint com saco de areia numa aula de CrossTraining" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Cross<br>Training</h3>
+          <p>Força, resistência e técnica em aulas de grupo, com o treinador sempre por perto.</p>
+          <ul class="horas"><li>13 aulas por semana</li><li>das 07:00 às 19:50</li></ul>
+        </div>
+      </article>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/pilates-v.webp" alt="Exercício de Pilates Clínico no tapete" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Pilates<br>Clínico</h3>
+          <p>Postura, core e mobilidade, em grupo ou individual. Também para grávidas.</p>
+          <ul class="horas"><li>Ter 20:00</li><li>Sex 20:00</li><li>Sáb 11:00</li></ul>
+        </div>
+      </article>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/supino.webp" alt="Treino personalizado com acompanhamento no supino" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Treino<br>Personalizado</h3>
+          <p>Um plano só teu, no estúdio ou em tua casa. Individual ou em pequeno grupo.</p>
+          <ul class="horas"><li>À tua hora</li></ul>
+        </div>
+      </article>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/kids-cor.webp" alt="Crianças do CrossKids numa atividade ao ar livre com pó colorido" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Cross<br>Kids</h3>
+          <p>Movimento, jogo e confiança para os mais novos.</p>
+          <ul class="horas"><li>Sáb 10:00</li></ul>
+        </div>
+      </article>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/running-pista.webp" alt="Treino do Running Club na pista ao fim da tarde" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Running<br>Club</h3>
+          <p>Correr em grupo, ao teu ritmo. Da pista à Corrida do Dragão.</p>
+          <ul class="horas"><li>Qua 19:15</li></ul>
+        </div>
+      </article>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/offseason.webp" alt="Jovem atleta no treino Off-Season" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Off-<br>Season</h3>
+          <p>Força, velocidade e prevenção de lesões para atletas. Com os Sub-17 do Rebordosa AC.</p>
+          <ul class="horas"><li>Por equipa</li></ul>
+        </div>
+      </article>
+
+      <article class="mod">
+        <figure class="mod-foto"><img src="img/pilates-anel.webp" alt="Treino clínico com anel de Pilates" loading="lazy"></figure>
+        <div class="mod-txt">
+          <h3>Saúde e<br>recuperação</h3>
+          <p>Treino clínico, massagem miofascial, avaliações físicas e acompanhamento nutricional.</p>
+          <ul class="horas"><li>Por marcação</li></ul>
+        </div>
+      </article>
+    </div>
+    <div class="mods-prog" aria-hidden="true"><span id="mods-prog"></span></div>
+  </div>
+</section>
+
+<!-- 5. o que dizem -->
+<section class="voz" aria-label="Críticas no Google">
+  <div class="voz-foto" aria-hidden="true"><img src="img/running-grupo.webp" alt="" loading="lazy"></div>
+  <div class="voz-in">
+    <div class="voz-nota"><b>5,0</b><span class="estrelas" aria-label="5 estrelas em 5"><i></i><i></i><i></i><i></i><i></i></span><small>no Google</small></div>
+    <blockquote class="voz-q" id="voz-q">«Tem sido motivador e agradável treinar neste estúdio. Aulas bem organizadas, diversificadas e com acompanhamento.»</blockquote>
+    <p class="voz-quem">André T. · aluno</p>
+  </div>
+</section>
+
+<!-- 6. comunidade: o cilindro -->
+<section class="comu" id="comunidade" aria-labelledby="t-comu">
+  <div class="comu-palco">
+    <div class="cil-cena" aria-hidden="true">
+      <div class="cil" id="cil">
+        <img src="img/kids-grupo.webp" alt="" loading="lazy">
+        <img src="img/engine-skierg.webp" alt="" loading="lazy">
+        <img src="img/running-sorriso.webp" alt="" loading="lazy">
+        <img src="img/engine-wallball.webp" alt="" loading="lazy">
+        <img src="img/kids-cor.webp" alt="" loading="lazy">
+        <img src="img/engine-skierg-2.webp" alt="" loading="lazy">
+        <img src="img/cordas-joelhos.webp" alt="" loading="lazy">
+        <img src="img/running-grupo.webp" alt="" loading="lazy">
+        <img src="img/engine-skierg-3.webp" alt="" loading="lazy">
+        <img src="img/kettlebell.webp" alt="" loading="lazy">
+        <img src="img/remo-relogio.webp" alt="" loading="lazy">
+        <img src="img/box-jump.webp" alt="" loading="lazy">
+        <img src="img/pb-sala.webp" alt="" loading="lazy">
+        <img src="img/ivo-sorriso.webp" alt="" loading="lazy">
+      </div>
+    </div>
+    <div class="comu-t">
+      <h2 id="t-comu">Mais do que treinar,<br>é fazer <em>parte</em>.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="eventos" aria-label="Eventos">
+  <div class="evento-prox">
+    <div class="ep-txt">
+      <p class="ep-quando">Sábado, 14 de novembro · 14:30</p>
+      <h3>Chestnut Burn<span>2.ª edição</span></h3>
+      <p>WOD em duplas. Trabalho de equipa, resistência e vontade de superar. Gratuito para alunos Premium.</p>
+      <div class="ep-conta" aria-label="Tempo até ao início">
+        <div class="led"><span class="led-fundo">88</span><span class="led-num" id="c-d">00</span><small>dias</small></div>
+        <div class="led"><span class="led-fundo">88</span><span class="led-num" id="c-h">00</span><small>horas</small></div>
+        <div class="led"><span class="led-fundo">88</span><span class="led-num" id="c-m">00</span><small>min</small></div>
+        <div class="led"><span class="led-fundo">88</span><span class="led-num" id="c-s">00</span><small>seg</small></div>
+      </div>
+      <a class="botao ouro" href="https://wa.me/351937110714?text=Ol%C3%A1!%20Quero%20inscrever%20a%20minha%20dupla%20no%20Chestnut%20Burn.">Inscrever a minha dupla</a>
+    </div>
+    <figure class="ep-foto"><img src="img/engine-skierg-2.webp" alt="Atleta no SkiErg durante o Engine Test Premium" loading="lazy"></figure>
+  </div>
+  <ul class="ev-lista">
+    <li><b>Engine Test Premium</b><span>II edição · provas em duplas, Hard e Medium Test</span></li>
+    <li><b>Halloween no estúdio</b><span>30 e 31 de outubro · prémio para o melhor mascarado</span></li>
+    <li><b>Rumo à Corrida do Dragão</b><span>Treino de 5 e 10 km no corredor do Rio Leça</span></li>
+    <li><b>Jantar de Verão</b><span>Private Event by the Sea</span></li>
+  </ul>
+</section>
+
+<!-- 7. o Ivo -->
+<section class="ivo" id="ivo" aria-labelledby="t-ivo">
+  <div class="ivo-fotos">
+    <figure class="ivo-f1"><img src="img/ivo-perfil.webp" alt="Ivo Bento, de perfil, no estúdio" loading="lazy"></figure>
+    <figure class="ivo-f2"><img src="img/ivo-sorriso.webp" alt="Ivo Bento a sorrir na pista ao fim da tarde" loading="lazy"></figure>
+  </div>
+  <div class="ivo-txt">
+    <h2 id="t-ivo" class="ivo-nome"><span>Ivo</span><span>Bento</span></h2>
+    <ul class="ivo-cv">
+      <li><b>Licenciado</b> em Educação Física, Saúde e Desporto</li>
+      <li><b>Mestre</b> em Ensino de Educação Física</li>
+      <li><b>Formações</b> em musculação, personal training e nutrição</li>
+      <li><b>Professor</b> em escolas e ginásios, antes de criar o estúdio</li>
+    </ul>
+    <p class="ivo-q">«Coloca o teu futuro em movimento, e vem treinar connosco.»</p>
+  </div>
+</section>
+
+<!-- 8. horário: o placar -->
+<section class="horario" id="horario" aria-labelledby="t-hor">
+  <div class="hor-cab">
+    <h2 id="t-hor">Mapa de aulas</h2>
+    <div class="hor-prox">
+      <p>Próxima aula: <b id="prox-nome">…</b></p>
+      <div class="led led-relogio" aria-live="polite"><span class="led-fundo">88:88:88</span><span class="led-num" id="prox-t">00:00:00</span></div>
+    </div>
+  </div>
+  <div class="dias" role="tablist" aria-label="Dia da semana" id="dias"></div>
+  <ol class="aulas" id="aulas"></ol>
+  <p class="hor-nota">Inscrições na app Regybox ou por WhatsApp. O PT, o treino clínico e as avaliações marcam-se à tua hora.</p>
+</section>
+
+<!-- 9. o novo estúdio -->
+<section class="novo" id="novo" aria-labelledby="t-novo">
+  <div class="novo-palco">
+    <figure class="novo-obra"><img src="img/obra-1.webp" alt="O novo estúdio em obra: cabos, condutas e escadotes" loading="lazy"></figure>
+    <svg class="planta" id="planta" viewBox="0 0 1000 620" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square">
+        <path d="M60 60 H940 V560 H60 Z"/>
+        <path d="M60 220 H330 M330 60 V560 M330 360 H620 M620 60 V360 M620 470 H940 M760 470 V560 M450 360 V560"/>
+        <path d="M140 560 V600 M260 560 V600 M200 600 H140"/>
+        <path d="M380 110 h180 v190 h-180 z M405 135 h130 v140 h-130 z"/>
+        <path d="M680 110 h70 v70 h-70 z M790 110 h70 v70 h-70 z M680 230 h70 v70 h-70 z M790 230 h70 v70 h-70 z"/>
+        <path d="M100 280 q60 -40 120 0 t120 0" opacity=".6"/>
+        <path d="M120 110 h150 M120 150 h150 M120 190 h90" opacity=".6"/>
+        <circle cx="530" cy="460" r="56"/><circle cx="530" cy="460" r="20"/>
+        <path d="M660 510 h80 M800 510 h100"/>
+      </g>
+      <g class="planta-cotas" fill="currentColor" font-size="17" font-family="Barlow, sans-serif" letter-spacing="2">
+        <text x="78" y="92">TREINO DE GRUPO</text>
+        <text x="350" y="92">FUNCIONAL</text>
+        <text x="640" y="92">PERSONAL TRAINING</text>
+        <text x="350" y="392">PILATES</text>
+        <text x="640" y="502">RECEÇÃO</text>
+      </g>
+    </svg>
+    <div class="novo-txt">
+      <p class="novo-pre">Pre Stage</p>
+      <h2 id="t-novo">O temporário que<br>prepara o <em>definitivo</em>.</h2>
+      <p>Por enquanto há pó, cabos e condutas. Daqui a pouco há uma nova casa, pensada ao detalhe com o arquiteto.</p>
+      <a class="botao" href="https://wa.me/351937110714?text=Ol%C3%A1!%20Quero%20saber%20quando%20abre%20o%20novo%20est%C3%BAdio.">Quero saber quando abre</a>
+      <p class="novo-nota">Planta ilustrativa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10. começar -->
+<section class="fim" id="comecar" aria-labelledby="t-fim">
+  <div class="fim-foto" aria-hidden="true"><img src="img/box-jump.webp" alt="" loading="lazy"></div>
+  <div class="fim-in">
+    <h2 id="t-fim">Começa<br><em>hoje</em>.</h2>
+    <div class="caminhos">
+      <a class="caminho" href="app/prova.html">
+        <span class="c-para">Ainda não treinas connosco</span>
+        <b>Aula de Prova</b>
+        <span>6 minutos em casa, com a câmara a contar e o Ivo a corrigir. No fim, guardamos-te um lugar.</span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a class="caminho" href="app/liga.html">
+        <span class="c-para">Já és Premium</span>
+        <b>Liga Premium</b>
+        <span>Cada treino conta. Vê o teu lugar no mês e o que ganhas no fim.</span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a class="caminho" href="https://wa.me/351937110714">
+        <span class="c-para">Preferes falar</span>
+        <b>WhatsApp</b>
+        <span>937 110 714. Respondemos e marcamos a tua primeira aula.</span>
+        <i aria-hidden="true">→</i>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="rod-marca">
+    <svg class="marca-x" viewBox="0 0 100 100" aria-hidden="true"><use href="#x"/></svg>
+    <p>Ivo Bento<br>Premium Studio</p>
+  </div>
+  <div class="rod-col">
+    <h3>Onde</h3>
+    <p>Av. Bombeiros Voluntários, 34, R/C<br>4585-358 Rebordosa, Paredes</p>
+    <a href="https://www.google.com/maps/search/?api=1&query=Ivo+Bento+Premium+Studio+Rebordosa">Abrir no mapa</a>
+  </div>
+  <div class="rod-col">
+    <h3>Contactos</h3>
+    <p><a href="tel:+351937110714">937 110 714</a><br><a href="mailto:ivobento.premiumstudiopt@gmail.com">ivobento.premiumstudiopt@gmail.com</a></p>
+  </div>
+  <div class="rod-col">
+    <h3>Segue</h3>
+    <p><a href="https://www.instagram.com/ivobento_pt_premiumstudio/">Instagram</a><br><a href="https://www.facebook.com/search/top?q=Ivo%20Bento%20Premium%20Studio">Facebook</a></p>
+  </div>
+  <p class="rod-assina">Your Future in Motion · Amostra de website feita pela AssimFica</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

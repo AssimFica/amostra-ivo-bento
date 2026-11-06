@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aula de Prova · Ivo Bento Premium Studio</title>
+<meta name="theme-color" content="#0A0B0A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum.css">
+<style>
+.ecra { display: none; min-height: 100dvh; max-width: 520px; margin: 0 auto; padding: max(20px, env(safe-area-inset-top)) 20px 72px; flex-direction: column; gap: 22px; }
+.ecra.ativo { display: flex; }
+.cab { display: flex; justify-content: space-between; align-items: center; }
+.cab .passo { font: 600 14px/1 var(--f-titulo); letter-spacing: .08em; color: var(--suave); text-transform: uppercase; }
+h1 { font-size: clamp(44px, 12vw, 60px); }
+h1 span { color: var(--verde); }
+.lead { color: var(--suave); font-size: 17px; }
+.fim { margin-top: auto; display: grid; gap: 10px; }
+
+.video-ivo { aspect-ratio: 16 / 10; border-radius: 22px; background: radial-gradient(90% 90% at 30% 20%, #2B3524, #111311 70%); border: 1px solid var(--linha); display: grid; place-items: center; position: relative; overflow: hidden; }
+.video-ivo .play { width: 66px; height: 66px; border-radius: 50%; background: var(--verde); display: grid; place-items: center; }
+.video-ivo .play::after { content: ""; margin-left: 6px; border-left: 22px solid #0A0B0A; border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
+.video-ivo small { position: absolute; left: 16px; bottom: 14px; right: 16px; font-size: 13px; color: var(--suave); }
+.desafio { border: 1px solid var(--ouro); background: rgba(201,174,60,.1); border-radius: 18px; padding: 14px 16px; font-size: 16px; }
+.desafio b { color: var(--ouro); }
+
+.opcoes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.op { border: 1px solid var(--linha); background: var(--placa); border-radius: 18px; padding: 16px 14px; text-align: left; display: grid; gap: 4px; min-height: 86px; align-content: start; }
+.op b { font: 700 21px/1 var(--f-titulo); text-transform: uppercase; }
+.op span { font-size: 13.5px; color: var(--suave); line-height: 1.35; }
+.op[aria-pressed="true"] { border-color: var(--verde); background: rgba(125,194,66,.12); box-shadow: inset 0 0 0 1px var(--verde); }
+
+.campo { display: grid; gap: 8px; }
+.campo > label, .campo > .rot { font-size: 15px; font-weight: 600; }
+.campo input[type=number], .campo input[type=tel], .campo input[type=text] { background: var(--placa); border: 1px solid var(--linha); border-radius: 14px; padding: 14px 16px; font-size: 18px; width: 100%; }
+.campo input:focus { outline: 2px solid var(--verde); border-color: transparent; }
+.campo small { color: var(--suave); font-size: 13.5px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 8px; }
+.seg button { border: 1px solid var(--linha); background: var(--placa); border-radius: 14px; padding: 13px 8px; font-weight: 600; font-size: 15.5px; }
+.seg button[aria-pressed="true"] { border-color: var(--verde); background: rgba(125,194,66,.14); }
+.saude { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; font-size: 15px; background: var(--placa); border: 1px solid var(--linha); border-radius: 16px; padding: 14px; }
+.saude input { width: 22px; height: 22px; accent-color: var(--verde); margin-top: 2px; }
+.alerta { font-size: 14.5px; color: #FFD2C9; background: rgba(255,106,85,.1); border: 1px solid rgba(255,106,85,.4); border-radius: 14px; padding: 12px 14px; }
+
+.prep { display: grid; gap: 14px; }
+.prep li { list-style: none; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: center; font-size: 16px; }
+.prep li i { width: 40px; height: 40px; border-radius: 12px; background: var(--placa2); border: 1px solid var(--linha); display: grid; place-items: center; font: 700 18px/1 var(--f-titulo); font-style: normal; color: var(--verde); }
+
+/* a câmara */
+#camara { position: fixed; inset: 0; background: #000; display: none; z-index: 40; }
+#camara.ativo { display: block; }
+#video, #tela { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.hud { position: absolute; inset: 0; pointer-events: none; padding: max(16px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
+.hud-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.contador { font: 800 120px/.8 var(--f-titulo); text-shadow: 0 4px 30px rgba(0,0,0,.6); font-variant-numeric: tabular-nums; }
+.contador small { display: block; font: 600 15px/1.2 var(--f-corpo); text-shadow: 0 1px 8px rgba(0,0,0,.8); margin-top: 10px; }
+.relogio { font: 700 44px/1 var(--f-titulo); font-variant-numeric: tabular-nums; text-shadow: 0 2px 16px rgba(0,0,0,.7); text-align: right; }
+.relogio small { display: block; font: 600 13px/1.2 var(--f-corpo); color: rgba(255,255,255,.8); }
+.barra { height: 6px; border-radius: 9px; background: rgba(255,255,255,.22); overflow: hidden; margin-top: 14px; }
+.barra span { display: block; height: 100%; width: 0; background: var(--verde); transition: width .25s linear; }
+.estado { align-self: center; margin-top: 18px; font-size: 15px; font-weight: 600; padding: 9px 16px; border-radius: 999px; background: rgba(10,11,10,.7); border: 1px solid rgba(255,255,255,.15); }
+.estado.ok { border-color: var(--verde); color: var(--verde); }
+.grande { position: absolute; inset: 0; display: grid; place-items: center; font: 800 200px/1 var(--f-titulo); color: var(--verde); text-shadow: 0 6px 40px rgba(0,0,0,.6); pointer-events: none; }
+.fala { margin-top: auto; background: rgba(244,244,240,.96); color: #0A0B0A; border-radius: 20px; padding: 12px 14px; display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; font-size: 17px; line-height: 1.3; font-weight: 500; opacity: 0; transform: translateY(10px); transition: opacity .2s ease, transform .2s ease; }
+.fala.mostra { opacity: 1; transform: none; }
+.fala .cara { width: 40px; height: 40px; border-radius: 50%; background: #0A0B0A; color: var(--verde); display: grid; place-items: center; font: 700 16px/1 var(--f-titulo); }
+.cam-botoes { position: absolute; right: 14px; bottom: max(96px, calc(env(safe-area-inset-bottom) + 96px)); display: grid; gap: 10px; pointer-events: auto; }
+.cam-botoes button { width: 48px; height: 48px; border-radius: 50%; background: rgba(10,11,10,.7); border: 1px solid rgba(255,255,255,.2); font-size: 13px; font-weight: 600; }
+.toque { position: absolute; inset: 0; pointer-events: auto; display: none; }
+.toque.ativo { display: block; }
+
+/* resultado */
+.numeros { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.num { background: var(--placa); border: 1px solid var(--linha); border-radius: 20px; padding: 16px; display: grid; gap: 4px; }
+.num b { font: 800 54px/.9 var(--f-titulo); font-variant-numeric: tabular-nums; }
+.num span { font-size: 13.5px; color: var(--suave); }
+.num.destaque { background: var(--verde); color: #0A0B0A; border-color: var(--verde); }
+.num.destaque span { color: #24361A; }
+.comparar { background: var(--placa); border: 1px solid var(--linha); border-radius: 20px; padding: 16px; display: grid; gap: 12px; }
+.comparar .lin { display: grid; grid-template-columns: 90px 1fr 40px; gap: 10px; align-items: center; font-size: 14.5px; }
+.comparar .b { height: 10px; border-radius: 9px; background: var(--placa2); overflow: hidden; }
+.comparar .b span { display: block; height: 100%; border-radius: 9px; background: var(--suave); }
+.comparar .lin.eu .b span { background: var(--verde); }
+.comparar .lin.amigo .b span { background: var(--ouro); }
+.comparar .lin b { text-align: right; font-variant-numeric: tabular-nums; }
+.nivel { display: flex; gap: 6px; }
+.nivel i { flex: 1; height: 8px; border-radius: 9px; background: var(--placa2); }
+.nivel i.on { background: var(--verde); }
+.trabalhar { border-left: 3px solid var(--verde); padding-left: 14px; font-size: 16.5px; }
+.trabalhar b { font-weight: 600; }
+.nota { font-size: 13px; color: var(--suave); }
+
+.folha { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none; align-items: flex-end; z-index: 60; }
+.folha.ativo { display: flex; }
+.folha > div { width: 100%; max-width: 520px; margin: 0 auto; background: var(--placa); border: 1px solid var(--linha); border-radius: 26px 26px 0 0; padding: 22px 20px max(28px, env(safe-area-inset-bottom)); display: grid; gap: 16px; }
+.folha h2 { font-size: 32px; }
+.vagas { display: grid; gap: 10px; }
+.vaga { text-align: left; border: 1px solid var(--linha); background: var(--placa2); border-radius: 18px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.vaga b { font: 700 22px/1 var(--f-titulo); text-transform: uppercase; }
+.vaga span { font-size: 14px; color: var(--suave); grid-column: 1; }
+.vaga em { grid-row: 1 / span 2; grid-column: 2; font-style: normal; font: 700 15px/1 var(--f-titulo); color: var(--verde); text-transform: uppercase; }
+.vaga[aria-pressed="true"] { border-color: var(--verde); box-shadow: inset 0 0 0 1px var(--verde); }
+.feito { text-align: center; display: grid; gap: 14px; justify-items: center; padding-top: 30px; }
+.feito .visto { width: 84px; height: 84px; border-radius: 50%; background: var(--verde); display: grid; place-items: center; }
+.feito .visto::after { content: ""; width: 34px; height: 18px; border-left: 6px solid #0A0B0A; border-bottom: 6px solid #0A0B0A; transform: rotate(-45deg) translate(3px, -3px); }
+.feito p { color: var(--suave); max-width: 34ch; }
+.cartao-lugar { width: 100%; background: var(--placa); border: 1px solid var(--linha); border-radius: 20px; padding: 18px; text-align: left; display: grid; gap: 6px; }
+.cartao-lugar b { font: 700 28px/1 var(--f-titulo); text-transform: uppercase; }
+.cartao-lugar span { color: var(--suave); font-size: 15px; }
+</style>
+</head>
+<body>
+
+<!-- 1. início -->
+<section class="ecra ativo" id="e-inicio">
+  <div class="cab"><a class="logo" href="index.html"><span class="x">✕</span><span>Ivo Bento<small>Premium Studio</small></span></a><span class="passo">Aula de Prova</span></div>
+  <h1>Treine com o Ivo, <span>em casa</span>, 6 minutos</h1>
+  <div class="desafio" id="banner-desafio" hidden></div>
+  <div class="video-ivo" role="img" aria-label="Lugar do vídeo de apresentação do Ivo"><span class="play"></span><small>Aqui entra o vídeo do Ivo a explicar a prova (20 segundos, gravado no estúdio).</small></div>
+  <p class="lead">A câmara do telemóvel conta as repetições bem feitas e corrige o movimento. Nada é gravado: o vídeo nunca sai do seu telemóvel.</p>
+  <div class="campo"><span class="rot">O que quer conseguir?</span>
+    <div class="opcoes" id="objetivos">
+      <button class="op" type="button" data-v="peso" aria-pressed="false"><b>Perder peso</b><span>Mais energia, menos peso</span></button>
+      <button class="op" type="button" data-v="forca" aria-pressed="false"><b>Ganhar força</b><span>Pernas, tronco, braços</span></button>
+      <button class="op" type="button" data-v="voltar" aria-pressed="false"><b>Voltar a treinar</b><span>Recomeçar com acompanhamento</span></button>
+      <button class="op" type="button" data-v="costas" aria-pressed="false"><b>Costas e postura</b><span>Menos dores, melhor postura</span></button>
+    </div>
+  </div>
+  <div class="fim"><button class="btn" id="b-inicio" type="button" disabled>Continuar</button></div>
+</section>
+
+<!-- 2. perguntas -->
+<section class="ecra" id="e-perguntas">
+  <div class="cab"><button class="passo" type="button" data-volta="e-inicio">‹ Voltar</button><span class="passo">1 de 3</span></div>
+  <h1>Quatro perguntas</h1>
+  <div class="campo"><label for="idade">Idade</label><input id="idade" type="number" inputmode="numeric" min="14" max="90" placeholder="Ex.: 42"></div>
+  <div class="campo"><span class="rot">Sexo</span><div class="seg" id="sexo"><button type="button" data-v="f" aria-pressed="false">Feminino</button><button type="button" data-v="m" aria-pressed="false">Masculino</button></div></div>
+  <div class="campo"><label for="cintura">Perímetro da cintura, em cm</label><input id="cintura" type="number" inputmode="numeric" min="50" max="170" placeholder="Opcional"><small>Medido à altura do umbigo. Ajuda a calcular a idade física.</small></div>
+  <div class="campo"><span class="rot">Quantas vezes treina por semana?</span><div class="seg" id="treinos"><button type="button" data-v="0" aria-pressed="false">Nenhuma</button><button type="button" data-v="1" aria-pressed="false">1 a 2</button><button type="button" data-v="3" aria-pressed="false">3 ou mais</button></div></div>
+  <label class="saude" for="saude"><input id="saude" type="checkbox"><span>Tenho um problema de coração, de tensão, ou uma lesão que me impede de fazer agachamentos.</span></label>
+  <p class="alerta" id="alerta-saude" hidden>Recomendamos que fale com o seu médico antes de treinar. Se fizer a prova, faça-a devagar e pare se sentir dor. O Ivo vai ter isto em conta quando o receber.</p>
+  <div class="fim"><button class="btn" id="b-perguntas" type="button" disabled>Continuar</button></div>
+</section>
+
+<!-- 3. preparação -->
+<section class="ecra" id="e-prep">
+  <div class="cab"><button class="passo" type="button" data-volta="e-perguntas">‹ Voltar</button><span class="passo">2 de 3</span></div>
+  <h1>Prova de <span>agachamentos</span>, 45 segundos</h1>
+  <ul class="prep">
+    <li><i>1</i><span>Pouse o telemóvel no chão, encostado a algo, com o ecrã virado para si.</span></li>
+    <li><i>2</i><span>Afaste-se uns 2 metros. Tem de se ver da cabeça aos pés.</span></li>
+    <li><i>3</i><span>Pés à largura dos ombros. Desça até a anca passar o joelho e volte a subir.</span></li>
+    <li><i>4</i><span>A prova começa sozinha quando a câmara o vir por inteiro.</span></li>
+  </ul>
+  <p class="nota">Na versão completa há quatro provas (agachamentos, flexões, prancha e saltos), adaptadas ao objetivo. Esta amostra tem a primeira.</p>
+  <p class="alerta" id="erro-camara" hidden></p>
+  <div class="fim">
+    <button class="btn" id="b-camara" type="button">Ligar a câmara</button>
+    <button class="btn sec" id="b-toques" type="button">Demonstração sem câmara</button>
+  </div>
+</section>
+
+<!-- a câmara -->
+<div id="camara" aria-live="polite">
+  <video id="video" playsinline muted></video>
+  <canvas id="tela"></canvas>
+  <div class="hud">
+    <div class="hud-topo">
+      <div class="contador"><span id="reps">0</span><small>repetições válidas</small></div>
+      <div class="relogio"><span id="tempo">0:45</span><small>agachamentos</small></div>
+    </div>
+    <div class="barra"><span id="barra"></span></div>
+    <div class="estado" id="estado">A preparar a câmara…</div>
+    <div class="fala" id="fala"><span class="cara">IB</span><span id="fala-txt"></span></div>
+  </div>
+  <div class="grande" id="grande" hidden></div>
+  <div class="toque" id="toque" aria-label="Toque para contar uma repetição"></div>
+  <div class="cam-botoes"><button type="button" id="b-som" aria-pressed="true">Som</button><button type="button" id="b-sair">Sair</button></div>
+</div>
+
+<!-- 4. resultado -->
+<section class="ecra" id="e-resultado">
+  <div class="cab"><a class="logo" href="index.html"><span class="x">✕</span><span>Ivo Bento<small>Premium Studio</small></span></a><span class="passo">O seu resultado</span></div>
+  <h1 id="r-titulo">Bom trabalho</h1>
+  <div class="numeros">
+    <div class="num"><b id="r-reps">0</b><span>agachamentos em 45 s</span></div>
+    <div class="num destaque"><b id="r-idade-f">0</b><span>a sua idade física (tem <span id="r-idade">0</span>)</span></div>
+  </div>
+  <div class="comparar" id="r-comparar"></div>
+  <div class="campo"><span class="rot">Nível <span id="r-nivel">1</span> de 5</span><div class="nivel" id="r-nivel-barra"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <p class="trabalhar" id="r-trabalhar"></p>
+  <p class="nota">A idade física desta amostra é uma estimativa simples. Na versão final usa o modelo validado da universidade NTNU e as quatro provas.</p>
+  <div class="fim">
+    <button class="btn" id="b-vagas" type="button">Guardar um lugar numa aula</button>
+    <button class="btn sec" id="b-plano" type="button">Receber o plano de 2 semanas</button>
+    <button class="btn ouro" id="b-desafiar" type="button">Desafiar um amigo</button>
+  </div>
+</section>
+
+<!-- 5. lugar guardado -->
+<section class="ecra" id="e-feito">
+  <div class="cab"><a class="logo" href="index.html"><span class="x">✕</span><span>Ivo Bento<small>Premium Studio</small></span></a></div>
+  <div class="feito">
+    <span class="visto" aria-hidden="true"></span>
+    <h1>Lugar guardado</h1>
+    <div class="cartao-lugar"><b id="f-aula"></b><span id="f-quando"></span><span>Av. Bombeiros Voluntários, 34 · Rebordosa</span></div>
+    <p>O Ivo já tem o seu resultado e vai treinar consigo a partir dele. Na véspera recebe um lembrete por SMS.</p>
+    <a class="btn sec" href="index.html">Voltar ao início</a>
+  </div>
+</section>
+
+<!-- folhas -->
+<div class="folha" id="f-vagas" role="dialog" aria-modal="true" aria-labelledby="t-vagas"><div>
+  <h2 id="t-vagas">Aulas com lugar livre</h2>
+  <p class="nota">Só aparecem aulas com vagas, do seu nível e do seu objetivo. Na versão final as vagas vêm do horário real.</p>
+  <div class="vagas" id="lista-vagas"></div>
+  <div class="campo"><label for="tel-vaga">O seu telemóvel</label><input id="tel-vaga" type="tel" inputmode="tel" placeholder="9xx xxx xxx" autocomplete="tel"></div>
+  <button class="btn" id="b-confirmar" type="button" disabled>Ficar com este lugar</button>
+  <button class="btn sec" type="button" data-fecha="f-vagas">Agora não</button>
+</div></div>
+
+<div class="folha" id="f-plano" role="dialog" aria-modal="true" aria-labelledby="t-plano"><div>
+  <h2 id="t-plano">O seu plano de 2 semanas</h2>
+  <p class="lead" id="p-plano"></p>
+  <div class="campo"><label for="tel-plano">O seu telemóvel</label><input id="tel-plano" type="tel" inputmode="tel" placeholder="9xx xxx xxx" autocomplete="tel"><small>Na amostra nada é enviado.</small></div>
+  <button class="btn" id="b-enviar-plano" type="button">Enviar-me o plano</button>
+  <p class="nota" id="ok-plano" hidden>Na versão final, o plano chegava agora por SMS, e ao 3.º e 7.º dia uma mensagem do Ivo.</p>
+  <button class="btn sec" type="button" data-fecha="f-plano">Fechar</button>
+</div></div>
+
+<div class="folha" id="f-desafio" role="dialog" aria-modal="true" aria-labelledby="t-desafio"><div>
+  <h2 id="t-desafio">Desafie um amigo</h2>
+  <div class="campo"><label for="meu-nome">O seu primeiro nome</label><input id="meu-nome" type="text" autocomplete="given-name" placeholder="Ex.: Rui"></div>
+  <p class="lead" id="txt-desafio"></p>
+  <button class="btn ouro" id="b-partilhar" type="button">Enviar o desafio</button>
+  <p class="nota" id="ok-desafio" hidden>Link copiado. Cole-o numa conversa.</p>
+  <button class="btn sec" type="button" data-fecha="f-desafio">Fechar</button>
+</div></div>
+
+<span class="amostra">Amostra da AssimFica · dados fictícios</span>
+<script type="module" src="prova.js"></script>
+</body>
+</html>

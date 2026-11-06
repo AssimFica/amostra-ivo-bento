@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrada · Liga Premium</title>
+<meta name="theme-color" content="#0A0B0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum.css">
+<style>
+html, body { height: 100%; overflow: hidden; }
+.porta { height: 100%; display: grid; grid-template-columns: 1.05fr 1fr; gap: 3vw; padding: 3.5vw 4vw; }
+.esq { display: grid; align-content: center; justify-items: start; gap: 2.2vw; }
+.esq h1 { font-size: clamp(40px, 5.4vw, 96px); }
+.esq h1 span { color: var(--verde); }
+.qr-wrap { display: flex; gap: 2.4vw; align-items: center; }
+.qr { background: #fff; border-radius: 28px; padding: 22px; width: clamp(220px, 24vw, 420px); aspect-ratio: 1; display: grid; place-items: center; position: relative; }
+.qr svg { width: 100%; height: 100%; display: block; }
+.anel { position: absolute; inset: -10px; border-radius: 36px; pointer-events: none; }
+.cod { display: grid; gap: 10px; }
+.cod b { font: 800 clamp(56px, 7vw, 120px)/.85 var(--f-titulo); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.cod span { color: var(--suave); font-size: clamp(14px, 1.3vw, 20px); max-width: 22ch; }
+.muda { height: 8px; width: 100%; max-width: 380px; border-radius: 9px; background: var(--placa2); overflow: hidden; }
+.muda span { display: block; height: 100%; background: var(--verde); }
+.dir { display: grid; align-content: center; gap: 1.6vw; }
+.cartao { background: var(--placa); border: 1px solid var(--linha); border-radius: 28px; padding: 2vw 2.2vw; display: grid; gap: 1vw; }
+.cartao h2 { font-size: clamp(24px, 2.4vw, 40px); }
+.hoje { display: flex; justify-content: space-between; align-items: baseline; }
+.hoje b { font: 800 clamp(48px, 5vw, 90px)/.85 var(--f-titulo); color: var(--verde); }
+.hoje span { color: var(--suave); font-size: clamp(14px, 1.2vw, 19px); }
+.top { list-style: none; display: grid; gap: .6vw; }
+.top li { display: grid; grid-template-columns: 3.2em 1fr auto; gap: 1vw; align-items: center; font-size: clamp(17px, 1.6vw, 28px); }
+.top li .p { font: 700 1.1em/1 var(--f-titulo); color: var(--ouro); }
+.top li .n { font: 700 1.15em/1 var(--f-titulo); font-variant-numeric: tabular-nums; }
+.ultima { position: fixed; right: 4vw; bottom: 4vw; background: var(--verde); color: var(--preto); border-radius: 22px; padding: 16px 22px; font: 700 clamp(18px, 1.6vw, 26px)/1.2 var(--f-titulo); text-transform: uppercase; transform: translateY(40px); opacity: 0; transition: transform .35s ease, opacity .35s ease; }
+.ultima.mostra { transform: none; opacity: 1; }
+.relogio { position: fixed; left: 4vw; top: 3vw; display: flex; gap: 18px; align-items: center; }
+.relogio span { font: 600 clamp(16px, 1.4vw, 22px)/1 var(--f-titulo); color: var(--suave); letter-spacing: .06em; }
+.esq { padding-top: 3vw; }
+@media (orientation: portrait) {
+  html, body { overflow: auto; }
+  .porta { grid-template-columns: 1fr; height: auto; padding: 90px 22px 60px; }
+  .qr-wrap { flex-direction: column; align-items: flex-start; }
+  .relogio { position: static; padding: 20px 22px 0; }
+}
+</style>
+</head>
+<body>
+<div class="relogio"><a class="logo" href="index.html"><span class="x">✕</span><span>Ivo Bento<small>Premium Studio</small></span></a><span id="hora"></span></div>
+<main class="porta">
+  <section class="esq">
+    <h1>Chegou? <span>Leia o código</span> e o treino conta.</h1>
+    <div class="qr-wrap">
+      <div class="qr" id="qr" role="img" aria-label="Código QR para registar a entrada na Liga Premium"></div>
+      <div class="cod"><b id="cod">····</b><span>Ou escreva estes números na app. Mudam a cada 30 segundos.</span><div class="muda"><span id="muda"></span></div></div>
+    </div>
+  </section>
+  <section class="dir">
+    <div class="cartao"><div class="hoje"><h2>Hoje no estúdio</h2><span id="data"></span></div><div class="hoje"><b id="hoje-n">0</b><span>entradas até agora</span></div></div>
+    <div class="cartao"><h2 id="t-top">Liga de novembro</h2><ol class="top" id="top"></ol></div>
+  </section>
+</main>
+<div class="ultima" id="ultima"></div>
+<span class="amostra fixa">Amostra da AssimFica · ecrã para o tablet da entrada</span>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script type="module">
+import { MESES, JANELA, codigo, tabela, carrega, ordinal } from './liga-dados.js';
+const $ = s => document.querySelector(s);
+const hoje = new Date();
+$('#data').textContent = hoje.getDate() + ' de ' + MESES[hoje.getMonth()];
+$('#t-top').textContent = 'Liga de ' + MESES[hoje.getMonth()];
+
+let ultimo = null;
+function qr() {
+  const c = codigo();
+  if (c === ultimo) return; ultimo = c;
+  const url = new URL('liga.html?entrada=' + c, location.href).toString();
+  $('#cod').textContent = c;
+  if (window.qrcode) {
+    const q = qrcode(0, 'M'); q.addData(url); q.make();
+    $('#qr').innerHTML = q.createSvgTag({ cellSize: 8, margin: 0, scalable: true });
+  } else { $('#qr').textContent = url; }
+}
+function topo() {
+  const lista = tabela(carrega(), hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  const ol = $('#top'); ol.textContent = '';
+  for (const x of lista.slice(0, 5)) {
+    const li = document.createElement('li');
+    const p = document.createElement('span'); p.className = 'p'; p.textContent = ordinal(x.lugar);
+    const n = document.createElement('span'); n.textContent = x.eu ? x.nome : x.nome;
+    const t = document.createElement('span'); t.className = 'n'; t.textContent = x.n;
+    li.append(p, n, t); ol.append(li);
+  }
+}
+// entradas de hoje: fictícias, a crescer com a hora do dia
+const h = hoje.getHours() + hoje.getMinutes() / 60;
+let entradasHoje = Math.max(0, Math.round((h - 7) * 2.1));
+$('#hoje-n').textContent = entradasHoje;
+const NOMES = ['Sandra M.', 'Rui T.', 'Joana P.', 'Diogo R.', 'Catarina R.', 'André T.'];
+setInterval(() => {
+  entradasHoje += 1; $('#hoje-n').textContent = entradasHoje;
+  const u = $('#ultima'); u.textContent = NOMES[entradasHoje % NOMES.length] + ' · ' + ordinal(3 + entradasHoje % 9) + ' treino do mês';
+  u.classList.add('mostra'); setTimeout(() => u.classList.remove('mostra'), 3500);
+}, 14000);
+
+function tique() {
+  qr();
+  const dentro = (Date.now() % JANELA) / JANELA;
+  $('#muda').style.width = ((1 - dentro) * 100).toFixed(1) + '%';
+  const d = new Date(); $('#hora').textContent = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+}
+tique(); topo(); setInterval(tique, 250); setInterval(topo, 10000);
+</script>
+</body>
+</html>
